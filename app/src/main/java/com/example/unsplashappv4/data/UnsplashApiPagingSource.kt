@@ -2,7 +2,7 @@ package com.example.unsplashappv4.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.unsplashappv4.data.models.UnsplashApiPhotos
+import com.example.unsplashappv4.data.models.unsplash.UnsplashApiPhotos
 import retrofit2.HttpException
 import java.io.IOException
 

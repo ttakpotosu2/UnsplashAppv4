@@ -1,4 +1,4 @@
-package com.example.unsplashappv4.data.models
+package com.example.unsplashappv4.data.models.unsplash
 
 import kotlinx.serialization.Serializable
 

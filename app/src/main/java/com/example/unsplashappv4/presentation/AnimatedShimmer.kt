@@ -11,7 +11,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AnimatedShimmer() {
+fun AnimatedShimmer(
+    shimmerItemsCount: Int = 1
+) {
     val shimmerColors = listOf(
         Color.LightGray.copy(.2f),
         Color.LightGray.copy(.9f),
@@ -40,7 +42,7 @@ fun AnimatedShimmer() {
 //        modifier = Modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        repeat(3){
+        repeat(shimmerItemsCount){
             ShimmerItems(brush = brush)
         }
     }

@@ -1,9 +1,11 @@
-package com.example.unsplashappv4.data
+package com.example.unsplashappv4.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.example.unsplashappv4.data.models.UnsplashApiPhotos
+import com.example.unsplashappv4.data.UnsplashApiPagingSource
+import com.example.unsplashappv4.data.UnsplashRepo
+import com.example.unsplashappv4.data.models.unsplash.UnsplashApiPhotos
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 

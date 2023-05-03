@@ -1,4 +1,4 @@
-package com.example.unsplashappv4.presentation
+package com.example.unsplashappv4.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,40 +18,52 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.compose.rememberAsyncImagePainter
 import com.example.unsplashappv4.R
-import com.example.unsplashappv4.data.UnsplashPhotosViewModel
-import com.example.unsplashappv4.data.models.UnsplashApiUrl
-import com.example.unsplashappv4.data.models.UnsplashApiUser
+import com.example.unsplashappv4.data.models.unsplash.UnsplashApiUrl
+import com.example.unsplashappv4.data.models.unsplash.UnsplashApiUser
+import com.example.unsplashappv4.presentation.AnimatedShimmer
+import com.example.unsplashappv4.presentation.ErrorItem
+import com.example.unsplashappv4.presentation.LoadingItem
+import com.example.unsplashappv4.presentation.UnsplashPhotosViewModel
+import com.example.unsplashappv4.presentation.navigation.Screen
 
 @Composable
 fun HomeScreen(
-    homeScreenViewModel: UnsplashPhotosViewModel = viewModel()
+    navHostController: NavHostController,
+    homeScreenViewModel: UnsplashPhotosViewModel = hiltViewModel()
 ) {
     val unsplashList = homeScreenViewModel.photos.collectAsLazyPagingItems()
 
     LazyColumn(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier
+            .background(Color(0xff121010))
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(unsplashList) { images ->
             if (images != null) {
                 ImageCard(
                     imageUrl = images.urls,
-                    imageUser = images.user
+                    imageUser = images.user,
+                    onItemClick = {
+                        navHostController.navigate(
+                            Screen.ImageDetailScreen.route + "/${images.id}"
+                        )
+                    }
                 )
             }
         }
-
         unsplashList.apply {
             when{
                 loadState.refresh is LoadState.Loading -> {
                     item {
-                        AnimatedShimmer()
+                        AnimatedShimmer(3)
                     }
                 }
                 loadState.append is LoadState.Loading -> {
@@ -68,7 +80,6 @@ fun HomeScreen(
                     }
                 }
                 loadState.append is LoadState.Error -> {
-                //    val e = unsplashList.loadState.refresh as LoadState.NotLoading
                     item {
                         ErrorItem(
                             message = "Something went wrong.",
@@ -98,8 +109,8 @@ fun HomeScreen(
 fun ImageCard(
     imageUrl: UnsplashApiUrl,
     imageUser: UnsplashApiUser,
+    onItemClick: () -> Unit
 ) {
-
     val imagePainter = rememberAsyncImagePainter(
         model = imageUrl.regular,
         error = painterResource(id = R.drawable.ic_launcher_foreground)
@@ -108,7 +119,7 @@ fun ImageCard(
     val userLikes = imageUser.totalLikes
     
     Box(modifier = Modifier
-        .clickable { }
+        .clickable { onItemClick() }
         .height(300.dp)
         .fillMaxWidth()
     ){
@@ -138,7 +149,7 @@ fun ImageCard(
             Icon(
                 imageVector = Icons.Default.Favorite,
                 contentDescription = null,
-                tint = Color.Red
+                tint = Color.White
             )
             Spacer(modifier = Modifier.width(3.dp))
             Text(

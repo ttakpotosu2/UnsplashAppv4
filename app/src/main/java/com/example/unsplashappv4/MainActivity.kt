@@ -3,7 +3,8 @@ package com.example.unsplashappv4
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.unsplashappv4.presentation.HomeScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.unsplashappv4.presentation.navigation.SetupNavGraph
 import com.example.unsplashappv4.presentation.theme.UnsplashAppv4Theme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -13,7 +14,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             UnsplashAppv4Theme {
-                HomeScreen()
+                val navController = rememberNavController()
+                SetupNavGraph(navHostController = navController)
             }
         }
     }
