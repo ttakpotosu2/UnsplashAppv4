@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,16 +28,13 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.unsplashappv4.R
 import com.example.unsplashappv4.data.models.unsplash.UnsplashApiUrl
 import com.example.unsplashappv4.data.models.unsplash.UnsplashApiUser
-import com.example.unsplashappv4.presentation.AnimatedShimmer
-import com.example.unsplashappv4.presentation.ErrorItem
-import com.example.unsplashappv4.presentation.LoadingItem
-import com.example.unsplashappv4.presentation.UnsplashPhotosViewModel
+import com.example.unsplashappv4.presentation.*
 import com.example.unsplashappv4.presentation.navigation.Screen
 
 @Composable
 fun HomeScreen(
     navHostController: NavHostController,
-    homeScreenViewModel: UnsplashPhotosViewModel = hiltViewModel()
+    homeScreenViewModel: UnsplashPhotosViewModel = hiltViewModel(),
 ) {
     val unsplashList = homeScreenViewModel.photos.collectAsLazyPagingItems()
 

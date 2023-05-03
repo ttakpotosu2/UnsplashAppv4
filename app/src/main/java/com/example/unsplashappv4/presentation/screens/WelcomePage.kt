@@ -3,6 +3,7 @@ package com.example.unsplashappv4.presentation.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -21,7 +22,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.unsplashappv4.R
-import com.example.unsplashappv4.data.models.typefit.TypeFitQuotes
 import com.example.unsplashappv4.data.models.unsplash.UnsplashApiUrl
 import com.example.unsplashappv4.presentation.*
 import com.example.unsplashappv4.presentation.navigation.Screen
@@ -31,10 +31,10 @@ import com.example.unsplashappv4.presentation.theme.IBMPlex
 fun WelcomePage(
     navHostController: NavHostController,
     randomImageViewModel: RandomImageViewModel = hiltViewModel(),
-//    randomQuotesViewModel: RandomQuotesViewModel = hiltViewModel()
+    randomQuotesViewModel: RandomQuotesViewModel = hiltViewModel()
 ) {
     val randomPhoto = randomImageViewModel.randomPhoto.collectAsState()
-//    val randomQuotes = randomQuotesViewModel
+    val quotes = randomQuotesViewModel.randomQuote.collectAsState()
 
     Column(
         modifier = Modifier
@@ -49,20 +49,27 @@ fun WelcomePage(
             modifier = Modifier.padding(24.dp)
         )
         Spacer(modifier = Modifier.weight(1f))
-        Text(
-            text = "Genius is one percent inspiration and ninety-nine percent perspiration. This is Amazing.",
-            fontFamily = IBMPlex,
-            color = Color.White,
-            fontSize = 30.sp,
-            modifier = Modifier.padding(24.dp)
-        )
-        Text(
-            text = "- Thomas Edison",
-            fontFamily = IBMPlex,
-            color = Color.White,
-            fontSize = 30.sp,
-            modifier = Modifier.padding(24.dp)
-        )
+        when(quotes.value){
+            is UiStateTypeFit.Success -> {
+                Text(
+                    text = (quotes.value as UiStateTypeFit.Success).quotes.text,
+                    fontFamily = IBMPlex,
+                    color = Color.White,
+                    fontSize = 10.sp,
+                    modifier = Modifier.padding(24.dp)
+                )
+                Text(
+                    text = (quotes.value as UiStateTypeFit.Success).quotes.author,
+                    fontFamily = IBMPlex,
+                    color = Color.White,
+                    fontSize = 10.sp,
+                    modifier = Modifier.padding(24.dp)
+                )
+            }
+            is UiStateTypeFit.Loading -> {
+                CircularProgressIndicator()
+            }
+        }
         Row(
             modifier = Modifier
                 .fillMaxWidth()

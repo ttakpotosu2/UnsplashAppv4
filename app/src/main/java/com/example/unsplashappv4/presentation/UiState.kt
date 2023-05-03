@@ -10,5 +10,5 @@ sealed class UiState {
 
 sealed class UiStateTypeFit {
     object Loading : UiStateTypeFit()
-    data class Success(val quotes: List<TypeFitQuotes>): UiStateTypeFit()
+    data class Success(val quotes: TypeFitQuotes): UiStateTypeFit()
 }

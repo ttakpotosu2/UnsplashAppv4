@@ -1,8 +1,8 @@
 package com.example.unsplashappv4.data.di
 
-//import com.example.unsplashappv4.data.TypeFitApi
+import com.example.unsplashappv4.data.TypeFitApi
 import com.example.unsplashappv4.data.UnsplashApi
-//import com.example.unsplashappv4.util.Constants.TYPE_FIT_BASE_URL
+import com.example.unsplashappv4.util.Constants.TYPE_FIT_BASE_URL
 import com.example.unsplashappv4.util.Constants.UNSPLASH_BASE_URL
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -68,18 +68,18 @@ object AppModule {
             .create(UnsplashApi::class.java)
     }
 
-//    @Provides
-//    @Singleton
-//    fun getRetrofitForTypeFit(
-//        gson: Gson,
-//        client: OkHttpClient
-//    ): TypeFitApi {
-//
-//        return Retrofit.Builder()
-//            .baseUrl(TYPE_FIT_BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-//            .client(client)
-//            .build()
-//            .create(TypeFitApi::class.java)
-//    }
+    @Provides
+    @Singleton
+    fun getRetrofitForTypeFit(
+        gson: Gson,
+        client: OkHttpClient
+    ): TypeFitApi {
+
+        return Retrofit.Builder()
+            .baseUrl(TYPE_FIT_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
+            .build()
+            .create(TypeFitApi::class.java)
+    }
 }
