@@ -51,13 +51,15 @@ fun WelcomePage(
         Spacer(modifier = Modifier.weight(1f))
         when (quotes.value) {
             is UiStateTypeFit.Success -> {
-                Text(
-                    text = (quotes.value as UiStateTypeFit.Success).quotes.text,
-                    fontFamily = IBMPlex,
-                    color = Color.White,
-                    fontSize = 30.sp,
-                    modifier = Modifier.padding(24.dp)
-                )
+                (quotes.value as UiStateTypeFit.Success).quotes.text?.let {
+                    Text(
+                        text = it,
+                        fontFamily = IBMPlex,
+                        color = Color.White,
+                        fontSize = 30.sp,
+                        modifier = Modifier.padding(24.dp)
+                    )
+                }
                 (quotes.value as UiStateTypeFit.Success).quotes.author?.let {
                     Text(
                         text = it,
@@ -73,7 +75,7 @@ fun WelcomePage(
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     CircularProgressIndicator(
                         modifier = Modifier
@@ -82,6 +84,12 @@ fun WelcomePage(
                     )
                 }
             }
+
+//            is UiStateTypeFit.Error -> {
+//                Column(){
+//                    Text(text = "Error")
+//                }
+//            }
         }
         Row(
             modifier = Modifier

@@ -108,38 +108,57 @@ fun ImageDetailScreen(
                     text = "user:: ${details.data.user.name}",
                     fontFamily = IBMPlex,
                     color = Color.White,
-                    fontSize = 30.sp
+                    fontSize = 20.sp
                 )
+
                 Text(
                     text = "username:: ${details.data.user.userName}",
                     fontFamily = IBMPlex,
                     color = Color.White,
-                    fontSize = 30.sp
+                    fontSize = 20.sp
                 )
                 Text(
                     text = "twitter:: ${details.data.user.twitterName}",
                     fontFamily = IBMPlex,
                     color = Color.White,
-                    fontSize = 30.sp
+                    fontSize = 20.sp
                 )
                 Text(
                     text = "twitter:: ${details.data.user.instagramName}",
                     fontFamily = IBMPlex,
                     color = Color.White,
-                    fontSize = 30.sp
+                    fontSize = 20.sp
                 )
                 Text(
                     text = "location:: ${details.data.user.location}",
                     fontFamily = IBMPlex,
                     color = Color.White,
-                    fontSize = 30.sp
+                    fontSize = 20.sp
                 )
                 Text(
                     text = "bio:: ${details.data.user.bio}",
                     fontFamily = IBMPlex,
                     color = Color.White,
-                    fontSize = 30.sp
+                    fontSize = 20.sp
                 )
+//                if(details.data.user.name != "null"){
+//
+//                }
+//                if(details.data.user.userName != "null"){
+//
+//                }
+//                if(details.data.user.twitterName != "null"){
+//
+//                }
+//                if(details.data.user.instagramName != "null"){
+//
+//                }
+//                if(details.data.user.location != "null"){
+//
+//                }
+//                if(details.data.user.bio != "null"){
+//
+//                }
             }
             is UiState.Loading -> {
                 Column(
