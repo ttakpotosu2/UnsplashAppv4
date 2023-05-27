@@ -9,4 +9,8 @@ class UnsplashRepo @Inject constructor(
     suspend fun getPhotos(pageNumber: Int): List<UnsplashApiPhotos> {
         return unsplashApi.getPhotos(pageNumber)
     }
+
+    suspend fun getPhoto(id: String): UnsplashApiPhotos{
+        return unsplashApi.getPhoto(id)
+    }
 }

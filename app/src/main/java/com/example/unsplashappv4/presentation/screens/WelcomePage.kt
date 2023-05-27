@@ -49,25 +49,38 @@ fun WelcomePage(
             modifier = Modifier.padding(24.dp)
         )
         Spacer(modifier = Modifier.weight(1f))
-        when(quotes.value){
+        when (quotes.value) {
             is UiStateTypeFit.Success -> {
                 Text(
                     text = (quotes.value as UiStateTypeFit.Success).quotes.text,
                     fontFamily = IBMPlex,
                     color = Color.White,
-                    fontSize = 10.sp,
+                    fontSize = 30.sp,
                     modifier = Modifier.padding(24.dp)
                 )
-                Text(
-                    text = (quotes.value as UiStateTypeFit.Success).quotes.author,
-                    fontFamily = IBMPlex,
-                    color = Color.White,
-                    fontSize = 10.sp,
-                    modifier = Modifier.padding(24.dp)
-                )
+                (quotes.value as UiStateTypeFit.Success).quotes.author?.let {
+                    Text(
+                        text = it,
+                        fontFamily = IBMPlex,
+                        color = Color.White,
+                        fontSize = 30.sp,
+                        modifier = Modifier.padding(24.dp)
+                    )
+                }
             }
+
             is UiStateTypeFit.Loading -> {
-                CircularProgressIndicator()
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .size(100.dp),
+                        color = Color.White
+                    )
+                }
             }
         }
         Row(
@@ -91,10 +104,11 @@ fun WelcomePage(
                 )
             }
         }
-        when(randomPhoto.value){
+        when (randomPhoto.value) {
             is UiState.Loading -> {
                 AnimatedShimmer()
             }
+
             is UiState.Success -> {
                 SingleImageCard(
                     imageUrl = (randomPhoto.value as UiState.Success).data.urls
@@ -121,7 +135,7 @@ fun SingleImageCard(
         Image(
             modifier = Modifier
                 .fillMaxSize(),
-            painter =  imagePainter,
+            painter = imagePainter,
             contentDescription = null,
             contentScale = ContentScale.Crop
         )

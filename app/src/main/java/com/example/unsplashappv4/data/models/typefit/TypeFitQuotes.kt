@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class TypeFitQuotes(
     val text: String,
-    val author: String
+    val author: String? = "No Author"
 )

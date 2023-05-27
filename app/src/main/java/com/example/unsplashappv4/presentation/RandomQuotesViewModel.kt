@@ -24,7 +24,8 @@ class RandomQuotesViewModel @Inject constructor(
 
     private fun getRandomQuote(){
         viewModelScope.launch {
-            repository.getRandomQuotes()
+           val result =  repository.getRandomQuotes()
+            _randomQuote.value = UiStateTypeFit.Success(quotes = result)
         }
     }
 }

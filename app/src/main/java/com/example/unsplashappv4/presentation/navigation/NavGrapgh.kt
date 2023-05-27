@@ -22,8 +22,8 @@ fun SetupNavGraph(
         composable(route = Screen.HomeScreen.route){
             HomeScreen(navHostController)
         }
-        composable(route = Screen.ImageDetailScreen.route + "/{imageDetails}"){
-            ImageDetailScreen()
+        composable(route = Screen.ImageDetailScreen.route + "/{photoId}"){
+            ImageDetailScreen(navHostController = navHostController)
         }
     }
 }

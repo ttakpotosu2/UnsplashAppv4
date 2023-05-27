@@ -5,12 +5,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UnsplashApiUser (
-    val name: String,
-    @SerializedName ("total_likes") val totalLikes: Int,
-    val bio: String,
-    val userName: String,
-    val location: String,
-    @SerializedName("twitter_username") val twitterName: String,
-    @SerializedName("instagram_username") val instagramName: String
+    val name: String? = "No name",
+    @SerializedName ("total_likes")
+    val totalLikes: Int,
+    val bio: String? = "No bio",
+    val userName: String? = "No Username",
+    val location: String?,
+    @SerializedName("twitter_username")
+    val twitterName: String? = "No name",
+    @SerializedName("instagram_username")
+    val instagramName: String? = "No name"
 
 )
