@@ -165,7 +165,6 @@ fun ImageDetailScreen(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
-
                 ) {
                     CircularProgressIndicator(
                         modifier = Modifier
