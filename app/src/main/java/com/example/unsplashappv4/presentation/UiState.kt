@@ -1,6 +1,6 @@
 package com.example.unsplashappv4.presentation
 
-import com.example.unsplashappv4.data.models.typefit.TypeFitEntity
+import com.example.unsplashappv4.data.local.TypeFitEntity
 import com.example.unsplashappv4.data.models.unsplash.UnsplashApiPhotos
 
 sealed class UiState {

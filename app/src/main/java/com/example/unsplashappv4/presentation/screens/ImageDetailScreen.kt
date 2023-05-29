@@ -41,8 +41,7 @@ import com.example.unsplashappv4.presentation.theme.UnsplashPhotoViewModel
 fun ImageDetailScreen(
     viewModel: UnsplashPhotoViewModel = hiltViewModel(),
     navHostController: NavHostController
-
-    ) {
+) {
     val details = viewModel.photo.value
     val scroll = rememberScrollState()
 
@@ -64,7 +63,7 @@ fun ImageDetailScreen(
                 tint = Color.White
             )
         }
-        when(details){
+        when (details) {
             is UiState.Success -> {
                 val imagePainter = rememberAsyncImagePainter(
                     model = details.data.urls.regular
@@ -72,7 +71,7 @@ fun ImageDetailScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                ){
+                ) {
                     Image(
                         painter = imagePainter,
                         contentDescription = null,
@@ -160,6 +159,7 @@ fun ImageDetailScreen(
 //
 //                }
             }
+
             is UiState.Loading -> {
                 Column(
                     modifier = Modifier.fillMaxSize(),

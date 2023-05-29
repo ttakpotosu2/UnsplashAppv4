@@ -2,7 +2,7 @@ package com.example.unsplashappv4.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.unsplashappv4.data.models.typefit.TypeFitDatabase
+import com.example.unsplashappv4.data.local.TypeFitDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

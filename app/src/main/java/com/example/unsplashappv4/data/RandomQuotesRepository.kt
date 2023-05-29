@@ -1,8 +1,7 @@
 package com.example.unsplashappv4.data
 
-import com.example.unsplashappv4.data.models.typefit.TypeFitDatabase
-import com.example.unsplashappv4.data.models.typefit.TypeFitEntity
-import com.example.unsplashappv4.data.models.typefit.TypeFitQuotes
+import com.example.unsplashappv4.data.local.TypeFitDatabase
+import com.example.unsplashappv4.data.local.TypeFitEntity
 import javax.inject.Inject
 
 class RandomQuotesRepository @Inject constructor(

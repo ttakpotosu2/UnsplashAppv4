@@ -1,4 +1,4 @@
-package com.example.unsplashappv4.data.models.typefit
+package com.example.unsplashappv4.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
